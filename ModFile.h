@@ -1,29 +1,22 @@
 #ifndef MODFILE_H
 #define MODFILE_H
 
-#include <QAbstractItemModel>
+#include <QCoreApplication>
 
-class ModFile : public QAbstractItemModel
+class ModFile
 {
-	Q_OBJECT
-
-public:
-	explicit ModFile(QObject *parent = nullptr);
-
-	// Header:
-	QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
-
-	// Basic functionality:
-	QModelIndex index(int row, int column,
-					  const QModelIndex &parent = QModelIndex()) const override;
-	QModelIndex parent(const QModelIndex &index) const override;
-
-	int rowCount(const QModelIndex &parent = QModelIndex()) const override;
-	int columnCount(const QModelIndex &parent = QModelIndex()) const override;
-
-	QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
-
 private:
-};
+	QString directoryPath;
+	QString fileMask;
+	QString newDirectory;
+public:
+	ModFile(QString dirPath, QString fMask); //конструктор в который мы передаем путь к файлам и маску
+//	~ModeFile();
+public:
+	void setNewd(QString newDir); // Метод для установки директории, в которой мы будем хранить результ. файлы
+	void fMaska(); // Метод для отображения файлов с маской
+	void deleteFile(QString filName); // Метод для удаления файлов
+	void xorFile(QString fileName, long long int xorValue); //xor для файла
 
+};
 #endif // MODFILE_H

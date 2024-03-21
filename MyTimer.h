@@ -1,29 +1,20 @@
 #ifndef MYTIMER_H
 #define MYTIMER_H
+#include <QCoreApplication>
+#include <QTimer>
 
-#include <QAbstractItemModel>
-
-class MyTimer : public QAbstractItemModel
-{
+class MyTimer : public QObject {
 	Q_OBJECT
 
 public:
-	explicit MyTimer(QObject *parent = nullptr);
+	MyTimer();
 
-	// Header:
-	QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
-
-	// Basic functionality:
-	QModelIndex index(int row, int column,
-					  const QModelIndex &parent = QModelIndex()) const override;
-	QModelIndex parent(const QModelIndex &index) const override;
-
-	int rowCount(const QModelIndex &parent = QModelIndex()) const override;
-	int columnCount(const QModelIndex &parent = QModelIndex()) const override;
-
-	QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+public slots:
+	// Слот, который будет вызываться по истечении таймера
+	void timerEvent();
 
 private:
+	QTimer *timer;
 };
 
 #endif // MYTIMER_H

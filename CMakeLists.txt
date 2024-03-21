@@ -15,5 +15,9 @@ find_package(Qt5Core)
 
 add_executable(ModFile
   main.cpp
+  ModFile.cpp
+  ModFile.h
+  MyTimer.cpp
+  MyTimer.h
 )
 target_link_libraries(ModFile Qt5::Core)
